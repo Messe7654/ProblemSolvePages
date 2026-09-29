@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Converted from: solution.md</title>
+    <meta charset="utf-8"/>
+
+</head>
+<body>
+
+<h1 id="heading-https3a2f2fwww.acmicpc.net2fproblem2f16987"><a href="https://www.acmicpc.net/problem/16987">https://www.acmicpc.net/problem/16987</a></h1>
+<p><h2 id="heading-bb38c81c">문제</h2>
+<p><p><strong>계란</strong> : {내구도 : <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">int</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">t</span></span></span></span>, 무게 : <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">int</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">in</span><span class="mord mathnormal">t</span></span></span></span>}의 <strong>struct</strong><br />
+두 개의 계란이 부딪힐 경우, <br />
+각각의 계란에 대해서 내구도에서 <em>상대방의 무게만큼</em> 을 차감한다. <br />
+그 결과, 내구도가 0 또는 그 이하로 줄어들 경우, <em><strong>깨진다</strong></em>.</p></blockquote>
+<p><p>진행 방법<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>개의 계란이 주어진다. <br />
+아직 깨지지 않은 제일 왼쪽의 계란부터 선택하여, 아직 깨지지 않은 계란과 부딪힌다.
+제일 오른쪽의 계란까지 시행한다. <br />
+가장 많은 계란을 깰 수 있는 가짓수는?</p></blockquote>
+</blockquote>
+<p><h2 id="heading-bb38c81c-c811adfc">문제 접근</h2>
+<p>중간의 깨지는 경우를 배제하고 생각하였을 때, <br />
+총 방법의 가짓수는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">N!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">!</span></span></span></span>개이다. <br />
+따라서 일반적으로 생각하면 어떠한 휴리스틱이 존재하여, 그 방법을 찾는 것 일 수 있겠지만<br />
+놀랍게도 이 문제의 제한 사항을 보게 되면 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo stretchy="false">(</mo><mn>1</mn><mo>≤</mo><mi>N</mi><mo>≤</mo><mn>8</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N (1\le N \le 8)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">8</span><span class="mclose">)</span></span></span></span>이다. <br />
+따라서 Brute-force 혹은 Backtracking을 통해 정답에 도달할 수 있는지 충분히 가늠해볼 수 있을 것 같다.</p></blockquote>
+<p><h2 id="heading-ad6cd604">구현</h2>
+<p>문제 그대로 백트레킹을 통해 구현하면 될 것 같다. <br />
+문제만의 특이점으로 작용할 만한 것들은</p><ul data-line="28" class="code-line" dir="auto">
+<li>모든 계란들이 깨져있을 때는 어떻게 처리할 것인가</li>
+<li>특정 계란이 이미 깨져있을 때는 어떻게 넘어갈 것인가</li>
+</ul>
+<p>정도가 있는 것 같다. 이에 주의하여 구현하도록 하자.</p></blockquote>
+
+
+</body>
+</html>

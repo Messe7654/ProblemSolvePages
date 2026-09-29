@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Converted from: solution.md</title>
+    <meta charset="utf-8"/>
+
+</head>
+<body>
+
+<h1 id="heading-https3a2f2fwww.acmicpc.net2fproblem2f5549"><a href="https://www.acmicpc.net/problem/5549">https://www.acmicpc.net/problem/5549</a></h1>
+<h2 id="heading-bb38c81c">문제</h2>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>×</mo><mi>M</mi></mrow><annotation encoding="application/x-tex">N \times M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> board에 'J', 'O', 'I'가 주어진다. <br />
+각 쿼리는 다음과 같이 주어진다.</p><p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mtext> </mtext><mi>b</mi><mtext> </mtext><mi>c</mi><mtext> </mtext><mi>d</mi></mrow><annotation encoding="application/x-tex">a\space b\space c\space  d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">a</span><span class="mspace"> </span><span class="mord mathnormal">b</span><span class="mspace"> </span><span class="mord mathnormal">c</span><span class="mspace"> </span><span class="mord mathnormal">d</span></span></span></span><br />
+왼쪽 위 모서리가 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span>, 오른쪽 아래 모서리가 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(c, d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span></span></span></span>인 공간에서<br />
+각각 'J', 'O', 'I'가 주어진 갯수를 공백을 기준으로 구분하여 출력한다.</p></blockquote>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>개의 쿼리가 주어질 때, 답을 출력하라.</p><h2 id="heading-bb38c81c-c811adfc">문제 접근</h2>
+<p>keyword는 다음과 같습니다.</p><p><strong>2차원</strong> 에서 <strong>특정 구간에</strong> 존재하는 <strong>갯수</strong> 를 여러번 구하는 문제</p><p>일단 2차원을 배제하고, 특정 구간에 존재하는 갯수를 구하는 쿼리는
+일반적으로 누적합 테크닉을 사용하여 많이 풉니다.<br />
+예전에 대충 정리해놓은 글은 <a href="https://cafe.naver.com/dremdeveloper/153">여기</a> 있습니다.</p><p>이것을 이제 2차원으로 확장해야 합니다.</p><p>2차원으로의 확장은 <strong>포함 배제의 원리를</strong> 통해 구할 수 있습니다.</p><p>그 이전에 일단 2차원 누적합 테이블을 정의하고 갑시다.</p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">pre[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">re</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>는 특정 board에서 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1, 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>을 왼쪽 위 모서리, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i, j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span>를 오른쪽 아래 모서리로 하는 구간을 전부 더한 결과라고 하겠습니다.</p><p>이제 저희가 구할 (a, b) =&gt; (c, d)는 다음과 같이 구할 수 있게 됩니다.</p><p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mo stretchy="false">[</mo><mi>c</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo><mo>−</mo><mi>p</mi><mi>r</mi><mi>e</mi><mo stretchy="false">[</mo><mi>a</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo><mo>−</mo><mi>p</mi><mi>r</mi><mi>e</mi><mo stretchy="false">[</mo><mi>c</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>b</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mi>p</mi><mi>r</mi><mi>e</mi><mo stretchy="false">[</mo><mi>a</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>b</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">pre[c][d] - pre[a - 1][d] - pre[c][b - 1] + pre[a - 1][b - 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">re</span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal">d</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">re</span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal">d</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">re</span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">re</span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>
+직접 한 번 그려보시면 어렵지 않게 이해가 가실테지만,
+표를 그리기는 귀찮아서 생략하도록 하겠습니다.</p><p>아무튼 이러한 테크닉을 통해 문제를 풀어나갈 수 있을 것 같습니다.</p><h2 id="heading-ad6cd604">구현</h2>
+<div  data-line="37" class="code-line" dir="auto" ></div>
+<details>
+<summary>접기/펼치기</summary>
+<pre>import sys
+
+INPUT = sys.stdin.readline
+OUTPUT = sys.stdout.write
+
+N, M = map(int, INPUT().split())
+K = int(INPUT().rstrip())
+
+index_map = {'J' : 0, 'O' : 1, 'I' : 2}
+board = [[[0, 0, 0] for col in range(M + 1)] for row in range(N + 1)]
+
+for row in range(N):
+  line = INPUT().rstrip()
+  for col in range(M):
+    c = line[col]
+    board[row + 1][col + 1][index_map[c]] = 1
+    
+for row in range(1, N + 1):
+  for col in range(2, M + 1):
+    board[row][col][0] += board[row][col - 1][0]
+    board[row][col][1] += board[row][col - 1][1]
+    board[row][col][2] += board[row][col - 1][2]
+    
+for col in range(1, M + 1):
+  for row in range(2, N + 1):
+    board[row][col][0] += board[row - 1][col][0]
+    board[row][col][1] += board[row - 1][col][1]
+    board[row][col][2] += board[row - 1][col][2]
+
+def query(a, b, c, d):
+  ans = [
+    board[c][d][i] - board[a - 1][d][i] - board[c][b -1][i] + board[a - 1][b - 1][i]
+    for i in range(3)
+  ]
+  OUTPUT(f"{ans[0]} {ans[1]} {ans[2]}\n")
+
+for i in range(K):
+  a, b, col, d = map(int, INPUT().split())
+  query(a, b, col, d)
+</pre><div  data-line="81" class="code-line" dir="auto" ></div>
+</details>
+
+
+</body>
+</html>
